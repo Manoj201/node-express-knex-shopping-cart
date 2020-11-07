@@ -1,0 +1,14 @@
+{
+    "presets": ["@babel/preset-env"],
+    "plugins": ["syntax-object-rest-spread", ["module-resolver", {
+        "root": ["./src"],
+        "alias": {
+            "server": "./server"
+        }
+      }],
+      ["@babel/plugin-transform-runtime",
+        {
+          "regenerator": true
+        }
+      ]]
+  }
