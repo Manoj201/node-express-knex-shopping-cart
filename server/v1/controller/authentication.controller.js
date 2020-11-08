@@ -1,7 +1,7 @@
 "use strict";
 import HttpStatus from "http-status-codes";
 
-// import errorFactory from "src/util/errorFactory";
+import errorFactory from "server/util/errorFactory";
 import authenticationService from "server/v1/services/authentication.service";
 
 const authenticationController = {
@@ -16,7 +16,10 @@ const authenticationController = {
         password,
         isMerchant
       );
-      res.status(HttpStatus.OK).json(data);
+      //
+      data.status === HttpStatus.CREATED
+        ? res.status(HttpStatus.CREATED).json(data.result)
+        : next(errorFactory.conflict(req.traceId));
     } catch (error) {
       next(error);
     }
