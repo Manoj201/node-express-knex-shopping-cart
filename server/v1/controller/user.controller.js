@@ -9,7 +9,6 @@ const userController = {
   createUser: async (req, res, next) => {
     try {
       const validation = userValidation.createUserValidation(req.body);
-      console.log(validation);
 
       if (validation.valid) {
         const { userName, fullName, email, password, isMerchant } = req.body;

@@ -1,13 +1,11 @@
 import HttpStatus from "http-status-codes";
 
 const createUserValidation = (payload) => {
-  console.log(payload);
-
   let validation = {
     details: {},
     valid: true,
   };
-  const { userName, email, password, isMerchant } = payload;
+  const { userName, email, password } = payload;
 
   let valid = true;
 
