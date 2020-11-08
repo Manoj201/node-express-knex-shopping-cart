@@ -4,13 +4,13 @@ import Promise from "bluebird";
 import server_init from "server/config/app.init";
 import server_middlewares from "server/middlewares";
 
-import { authenticateRoutes } from "server/v1/routes";
+import { userRoutes } from "server/v1/routes";
 
 var app = express();
 app.listenAsync = Promise.promisify(app.listen).bind(app);
 
 const server_registerApi = (app) => {
-  authenticateRoutes(app);
+  userRoutes(app);
 };
 
 server_init();

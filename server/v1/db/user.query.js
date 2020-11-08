@@ -1,7 +1,13 @@
 import knex from "server/util/knex";
 
-const signUpQuery = (data) => {
-  return knex("users").insert(data, "*");
+const createUser = (data) => {
+  return knex("users").insert(data, [
+    "id",
+    "user_name",
+    "full_name",
+    "email",
+    "is_merchant",
+  ]);
 };
 
 const isExistUserQuery = (user_name, email) => {
@@ -14,6 +20,6 @@ const isExistUserQuery = (user_name, email) => {
 };
 
 export default {
-  signUpQuery,
+  createUser,
   isExistUserQuery,
 };

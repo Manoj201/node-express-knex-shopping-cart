@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs";
 
 import UserQuery from "server/v1/db/user.query";
 
-const signUp = async (userName, fullName, email, password, isMerchant) => {
+const createUser = async (userName, fullName, email, password, isMerchant) => {
   let payload = {};
   const id = uuidv4();
 
@@ -14,7 +14,7 @@ const signUp = async (userName, fullName, email, password, isMerchant) => {
   if (exist.length) {
     payload.status = HttpStatus.CONFLICT;
   } else {
-    const addedUser = await UserQuery.signUpQuery({
+    const addedUser = await UserQuery.createUser({
       id,
       user_name: userName,
       full_name: fullName,
@@ -31,5 +31,5 @@ const signUp = async (userName, fullName, email, password, isMerchant) => {
 };
 
 export default {
-  signUp,
+  createUser,
 };
