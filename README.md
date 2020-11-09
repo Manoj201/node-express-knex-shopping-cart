@@ -106,13 +106,13 @@ $ yarn prod
 
 ## :chart: Swagger Document URL
 
-This project API's well documented, see the [SWAGGER](http://localhost:3000/api-docs/v1/)
+This project API's well documented, sUse this link after project started <a href="http://localhost:3000/api-docs/v1/" target="_blank">Swagger UI</a>
 
 ## :memo: License
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
-Made with :heart: by <a href="https://github.com/manoj201" ">Manoj Gamachchige</a>
+Made with :heart: by <a href="https://github.com/manoj201" target="_blank">Manoj Gamachchige</a>
 
 &#xa0;
 
