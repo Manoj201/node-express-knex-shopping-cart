@@ -104,9 +104,9 @@ $ yarn prod
 # The server will initialize in the <http://localhost:3000>
 ```
 
-## :chart Swagger Document URL
+## :chart: Swagger Document URL
 
-This project API's well documented, see the [SWAGGER][http://localhost:3000/api-docs/v1/]
+This project API's well documented, see the [SWAGGER](http://localhost:3000/api-docs/v1/)
 
 ## :memo: License
 
