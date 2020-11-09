@@ -1,7 +1,9 @@
 import knex from "server/util/knex";
 
+const tableName = "users";
+
 const createUser = (data) => {
-  return knex("users").insert(data, [
+  return knex(tableName).insert(data, [
     "id",
     "user_name",
     "full_name",
@@ -11,7 +13,7 @@ const createUser = (data) => {
 };
 
 const isExistUserQuery = (user_name, email) => {
-  return knex("users")
+  return knex(tableName)
     .select("id")
     .where((qb) => {
       qb.where({ user_name });
@@ -19,7 +21,30 @@ const isExistUserQuery = (user_name, email) => {
     });
 };
 
+const getById = (id) => {
+  return knex(tableName)
+    .select(["id", "user_name", "full_name", "email", "is_merchant"])
+    .where({ id })
+    .first();
+};
+
+const getByUsername = (user_name) => {
+  return knex(tableName)
+    .select([
+      "id",
+      "user_name",
+      "full_name",
+      "email",
+      "is_merchant",
+      "password",
+    ])
+    .where({ user_name })
+    .first();
+};
+
 export default {
   createUser,
   isExistUserQuery,
+  getById,
+  getByUsername,
 };

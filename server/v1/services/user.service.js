@@ -30,6 +30,12 @@ const createUser = async (userName, fullName, email, password, isMerchant) => {
   return payload;
 };
 
+const getUserById = async (id) => {
+  const user = await UserQuery.getById(id);
+  return user;
+};
+
 export default {
   createUser,
+  getUserById,
 };

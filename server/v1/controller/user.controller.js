@@ -2,7 +2,7 @@
 import HttpStatus from "http-status-codes";
 
 import userValidation from "server/v1/validations/user.validation";
-import authenticationService from "server/v1/services/authentication.service";
+import userService from "server/v1/services/user.service";
 import errorFactory from "server/util/errorFactory";
 
 const userController = {
@@ -12,7 +12,7 @@ const userController = {
 
       if (validation.valid) {
         const { userName, fullName, email, password, isMerchant } = req.body;
-        const data = await authenticationService.createUser(
+        const data = await userService.createUser(
           userName,
           fullName,
           email,
@@ -26,6 +26,18 @@ const userController = {
       } else {
         next(validation);
       }
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  getUserById: async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const data = await userService.getUserById(id);
+      data
+        ? res.status(HttpStatus.OK).json(data)
+        : next(errorFactory.notFound(req.traceId));
     } catch (error) {
       next(error);
     }
