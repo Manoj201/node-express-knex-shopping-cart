@@ -112,7 +112,7 @@ This project API's well documented, see the [SWAGGER](http://localhost:3000/api-
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
-Made with :heart: by <a href="https://github.com/manoj201" target="_blank">Manoj Gamachchige</a>
+Made with :heart: by <a href="https://github.com/manoj201" ">Manoj Gamachchige</a>
 
 &#xa0;
 
