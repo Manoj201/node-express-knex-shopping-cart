@@ -57,7 +57,8 @@ Node JS API architecture with express js and Knex (postgress) Query builder.
 :heavy_check_mark: Use nodeman for auto reload while developing \
 :heavy_check_mark: Demostrate simple shopping cart API set \
 :heavy_check_mark: Docker support : TODO \
-:heavy_check_mark: Docker support : AWS communication TODO
+:heavy_check_mark: Docker support : AWS communication TODO \
+:heavy_check_mark: Swagger API documentation
 
 ## :rocket: Technologies
 
@@ -98,8 +99,14 @@ $ yarn watch:dev
 # For rn production mode
 $ yarn prod
 
+
+
 # The server will initialize in the <http://localhost:3000>
 ```
+
+## :chart Swagger Document URL
+
+This project API's well documented, see the [SWAGGER][http://localhost:3000/api-docs/v1/]
 
 ## :memo: License
 
