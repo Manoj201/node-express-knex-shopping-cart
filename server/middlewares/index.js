@@ -6,6 +6,8 @@ import cors from "cors";
 import expressStatusMonitor from "express-status-monitor";
 import HttpStatus from "http-status-codes";
 import cookieParser from "cookie-parser";
+import swaggerUI from "swagger-ui-express";
+import swaggerDocumentV1 from "server/v1/swager";
 
 import logger from "server/util/logger";
 import errorFactory from "server/util/errorFactory";
@@ -18,6 +20,7 @@ const configure = (app) => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
+  app.use("/api-docs/v1", swaggerUI.serve, swaggerUI.setup(swaggerDocumentV1));
 };
 
 const globalErrorHandler = (app) => {
