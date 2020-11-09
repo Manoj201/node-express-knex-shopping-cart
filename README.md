@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Node Express Knex Shopping Cart" />
+  <img src="./nodejs.gif" alt="Node Express Knex Shopping Cart" />
 
 &#xa0;
 
