@@ -78,7 +78,7 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) , 
 
 ```bash
 # Clone this project
-$ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/node-express-knex-shopping-cart
+$ git clone https://github.com/manoj201/node-express-knex-shopping-cart
 
 # Access
 $ cd node-express-knex-shopping-cart
