@@ -2,6 +2,9 @@
   "name": "node-express-knex-shopping-cart",
   "version": "0.0.0",
   "private": true,
+  "author": "Manoj Gamachchige",
+  "license": "ISC",
+  "keywords": ["nodeJs", "express", "Knex", "Knex PG", "nodeJS Backend"],
   "nodemonConfig": {
     "exec": "npm run dev",
     "watch": [
