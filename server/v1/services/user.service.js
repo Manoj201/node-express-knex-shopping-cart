@@ -1,10 +1,10 @@
 "use strict";
 import HttpStatus from "http-status-codes";
-import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcryptjs";
 
 import UserQuery from "server/v1/db/user.query";
+import config from "server/config/app.config";
 
 const createUser = async (userName, fullName, email, password, isMerchant) => {
   let payload = {};
@@ -34,8 +34,34 @@ const getUserById = async (id) => {
   const user = await UserQuery.getById(id);
   return user;
 };
+const getUsers = async (pageNumber, pageSize) => {
+  const page = pageNumber || 1;
+  const size = pageSize || config.listingPageSize;
+
+  if (page < 1) {
+    page = 1;
+  }
+  const offset = (page - 1) * size;
+
+  const users = await UserQuery.getUsers(size, offset);
+  const countData = await UserQuery.getUsersCount();
+
+  const total = parseInt(countData && countData.count);
+  const lastPage = Math.ceil(total / size);
+
+  return {
+    data: users,
+    meta: {
+      page,
+      size,
+      total,
+      lastPage,
+    },
+  };
+};
 
 export default {
   createUser,
   getUserById,
+  getUsers,
 };

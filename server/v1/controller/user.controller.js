@@ -42,6 +42,18 @@ const userController = {
       next(error);
     }
   },
+  getUsers: async (req, res, next) => {
+    try {
+      const { page, pageSize } = req.query;
+      const data = await userService.getUsers(
+        parseInt(page),
+        parseInt(pageSize)
+      );
+      res.status(HttpStatus.OK).json(data);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 export default userController;

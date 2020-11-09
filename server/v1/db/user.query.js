@@ -42,9 +42,22 @@ const getByUsername = (user_name) => {
     .first();
 };
 
+const getUsers = (limit, offset) => {
+  return knex(tableName)
+    .select(["id", "user_name", "full_name", "email", "is_merchant"])
+    .limit(limit)
+    .offset(offset);
+};
+
+const getUsersCount = () => {
+  return knex(tableName).count("* as count").first();
+};
+
 export default {
   createUser,
   isExistUserQuery,
   getById,
   getByUsername,
+  getUsers,
+  getUsersCount,
 };
