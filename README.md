@@ -74,10 +74,6 @@ The following tools were used in this project:
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) , [Node](https://nodejs.org/en/) and [Knex](http://knexjs.org/) installed.
 
-# Install knex please use this command,
-
-\$ yarn add knex -g
-
 ## :checkered_flag: Starting
 
 ```bash
@@ -89,6 +85,9 @@ $ cd node-express-knex-shopping-cart
 
 # Install dependencies
 $ yarn
+
+# Install knex query builder globally
+$ yarn add knex -g
 
 # Run Migrations
 $ knex migrate:latest
