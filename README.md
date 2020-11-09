@@ -54,10 +54,10 @@ Node JS API architecture with express js and Knex (postgress) Query builder.
 :heavy_check_mark: Knex postgress query builder;\
 :heavy_check_mark: Full authentic API using JWT authentication;\
 :heavy_check_mark: maintain different env files for different enviorenments ;\
-:heavy_check_mark: Use nodeman for auto reload while developing;
-:heavy_check_mark: Demostrate simple shopping cart API set;
-:heavy_check_mark: Docker support : TODO;
-:heavy_check_mark: Docker support : AWS communication TODO;
+:heavy_check_mark: Use nodeman for auto reload while developing;\
+:heavy_check_mark: Demostrate simple shopping cart API set;\
+:heavy_check_mark: Docker support : TODO;\
+:heavy_check_mark: Docker support : AWS communication TODO;\
 
 ## :rocket: Technologies
 
