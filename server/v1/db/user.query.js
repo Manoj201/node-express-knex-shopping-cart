@@ -23,9 +23,19 @@ const isExistUserQuery = (user_name, email) => {
 
 const getById = (id) => {
   return knex(tableName)
-    .select(["id", "user_name", "full_name", "email", "is_merchant"])
-    .where({ id })
-    .first();
+    .select([
+      "users.id",
+      "user_name as userName",
+      "full_name as fullName",
+      "email",
+      "users.is_merchant as isMerchant",
+      "merchants.id as merchantId",
+      "merchants.country_code as countryCode",
+      "merchants.merchant_name as merchantName",
+      "merchants.status as merchantStatus",
+    ])
+    .leftJoin("merchants", "users.id", "merchants.user_id")
+    .where("users.id", "=", id);
 };
 
 const getByUsername = (user_name) => {

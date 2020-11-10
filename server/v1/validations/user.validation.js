@@ -7,8 +7,6 @@ const createUserValidation = (payload) => {
   };
   const { userName, email, password } = payload;
 
-  let valid = true;
-
   if (!userName) {
     validation.details["userName"] = "Username is required";
     validation.valid = false;

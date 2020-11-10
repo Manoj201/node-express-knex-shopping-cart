@@ -30,9 +30,20 @@ const createUser = async (userName, fullName, email, password, isMerchant) => {
   return payload;
 };
 
-const getUserById = async (id) => {
-  const user = await UserQuery.getById(id);
-  return user;
+const getUserById = async (userId) => {
+  let response = {};
+  const dbResults = await UserQuery.getById(userId);
+
+  const userObject = dbResults[0];
+  const { id, userName, fullName, email, isMerchant } = userObject;
+
+  response = { id, userName, fullName, email, isMerchant };
+  response.merchants = dbResults.map((item) => {
+    const { merchantId, countryCode, merchantName, merchantStatus } = item;
+    return { merchantId, countryCode, merchantName, merchantStatus };
+  });
+
+  return response;
 };
 const getUsers = async (pageNumber, pageSize) => {
   const page = pageNumber || 1;
