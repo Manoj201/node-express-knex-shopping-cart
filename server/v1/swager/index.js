@@ -22,7 +22,55 @@ export default {
     },
   },
   paths: {
+    "/login": {
+      post: {
+        tags: ["Authenticate"],
+        summary: "Generate jwt token for bearer token",
+        parameters: [
+          {
+            name: "credentials",
+            in: "body",
+            description: "credentials object to login",
+            schema: {
+              $ref: "#/definitions/Credential",
+            },
+          },
+        ],
+        produces: ["application/json"],
+        responses: {
+          200: {
+            description: "New user is created",
+            schema: {
+              $ref: "#/definitions/User",
+            },
+          },
+        },
+      },
+    },
     "/user": {
+      post: {
+        tags: ["User"],
+        summary: "Create User",
+        parameters: [
+          {
+            name: "user",
+            in: "body",
+            description: "User that we want to create",
+            schema: {
+              $ref: "#/definitions/User",
+            },
+          },
+        ],
+        produces: ["application/json"],
+        responses: {
+          200: {
+            description: "New user is created",
+            schema: {
+              $ref: "#/definitions/User",
+            },
+          },
+        },
+      },
       get: {
         tags: ["User"],
         summary: "Get all users in system",
@@ -49,28 +97,32 @@ export default {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/ResponseObject",
+              $ref: "#/definitions/User",
             },
           },
         },
       },
-      post: {
+    },
+    "/user/{userId}": {
+      get: {
         tags: ["User"],
-        description: "Create new user in system",
-        parameters: [
+        summary: "Get User List with Pagination",
+        security: [
           {
-            name: "user",
-            in: "body",
-            description: "User that we want to create",
-            schema: {
-              $ref: "#/definitions/User",
-            },
+            Bearer: [],
           },
         ],
-        produces: ["application/json"],
+        parameters: [
+          {
+            name: "userId",
+            in: "path",
+            type: "string",
+            required: true,
+          },
+        ],
         responses: {
           200: {
-            description: "New user is created",
+            description: "OK",
             schema: {
               $ref: "#/definitions/User",
             },
@@ -80,6 +132,19 @@ export default {
     },
   },
   definitions: {
+    Credential: {
+      required: ["userName", "password"],
+      properties: {
+        userName: {
+          type: "string",
+          uniqueItems: true,
+        },
+        password: {
+          type: "string",
+          uniqueItems: true,
+        },
+      },
+    },
     User: {
       required: ["id", "userName", "email", "password"],
       properties: {
