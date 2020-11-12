@@ -11,7 +11,7 @@ const loger = winston.createLogger({
       filename: "./applog.log",
       handleExceptions: true,
       json: false,
-      maxsize: 5242880, //5MB
+      maxsize: 5242880, // 5MB
       colorize: false,
     }),
   ],

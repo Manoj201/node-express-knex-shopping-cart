@@ -1,7 +1,5 @@
-import HttpStatus from "http-status-codes";
-
 const createMerchantValidation = (payload) => {
-  let validation = {
+  const validation = {
     details: {},
     valid: true,
   };

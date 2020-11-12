@@ -1,8 +1,8 @@
 import express from "express";
 import Promise from "bluebird";
 
-import server_init from "server/config/app.init";
-import server_middlewares from "server/middlewares";
+import ServerInit from "server/config/app.init";
+import ServerMiddlewares from "server/middlewares";
 
 import {
   authenticateRoutes,
@@ -10,19 +10,19 @@ import {
   merchantRoutes,
 } from "server/v1/routes";
 
-var app = express();
+const app = express();
 app.listenAsync = Promise.promisify(app.listen).bind(app);
 
-const server_registerApi = (app) => {
+const serverRegisterApi = (app) => {
   authenticateRoutes(app);
   userRoutes(app);
   merchantRoutes(app);
 };
 
-server_init();
-server_middlewares.configure(app);
-server_registerApi(app);
-server_middlewares.notFoundHandler(app);
-server_middlewares.globalErrorHandler(app);
+ServerInit();
+ServerMiddlewares.configure(app);
+serverRegisterApi(app);
+ServerMiddlewares.notFoundHandler(app);
+ServerMiddlewares.globalErrorHandler(app);
 
 export default app;

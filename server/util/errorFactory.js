@@ -1,5 +1,3 @@
-"use strict";
-
 import HTTPStatus from "http-status-codes";
 
 const errorFactory = {

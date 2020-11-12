@@ -17,9 +17,9 @@ const merchantController = {
           userId
         );
 
-        data.status === HttpStatus.CREATED
-          ? res.status(HttpStatus.CREATED).json(data.result)
-          : next(errorFactory.conflict(req.traceId));
+        data.status === HttpStatus.CREATED ?
+          res.status(HttpStatus.CREATED).json(data.result) :
+          next(errorFactory.conflict(req.traceId));
       } else {
         next(validation);
       }

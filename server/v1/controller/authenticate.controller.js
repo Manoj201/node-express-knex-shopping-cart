@@ -1,4 +1,3 @@
-"use strict";
 import HttpStatus from "http-status-codes";
 
 import AuthenticateService from "server/v1/services/authenticate.service";
@@ -9,12 +8,9 @@ const authenticateController = {
     try {
       const { userName, password } = req.body;
       const data = await AuthenticateService.authenticate(userName, password);
-      console.log(data);
-      data.token
-        ? res.status(HttpStatus.OK).json(data)
-        : res
-            .status(HttpStatus.UNAUTHORIZED)
-            .json(errorFactory.unAuthorized(req.traceId));
+      data.token ?
+        res.status(HttpStatus.OK).json(data) :
+        res.status(HttpStatus.UNAUTHORIZED).json(errorFactory.unAuthorized(req.traceId));
     } catch (error) {
       next(error);
     }

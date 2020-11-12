@@ -1,6 +1,6 @@
 const tableName = "users";
 
-exports.up = async function (knex) {
+exports.up = async (knex) => {
   await knex.schema.createTable(tableName, (table) => {
     table.uuid("id").primary();
     table.text("user_name");
@@ -14,6 +14,7 @@ exports.up = async function (knex) {
   });
 
   await knex.raw(
+    // eslint-disable-next-line indent
     `CREATE TRIGGER update_timestamp BEFORE UPDATE ON ${tableName} FOR EACH ROW EXECUTE PROCEDURE update_timestamp();`
   );
 };

@@ -12,11 +12,11 @@ const createUser = (data) => {
   ]);
 };
 
-const isExistUserQuery = (user_name, email) => {
+const isExistUserQuery = (userName, email) => {
   return knex(tableName)
     .select("id")
     .where((qb) => {
-      qb.where({ user_name });
+      qb.where({ user_name: userName });
       qb.orWhere({ email });
     });
 };
@@ -38,7 +38,7 @@ const getById = (id) => {
     .where("users.id", "=", id);
 };
 
-const getByUsername = (user_name) => {
+const getByUsername = (userName) => {
   return knex(tableName)
     .select([
       "id",
@@ -48,7 +48,7 @@ const getByUsername = (user_name) => {
       "is_merchant",
       "password",
     ])
-    .where({ user_name })
+    .where({ "user_name": userName })
     .first();
 };
 

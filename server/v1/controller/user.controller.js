@@ -20,9 +20,9 @@ const userController = {
           isMerchant
         );
 
-        data.status === HttpStatus.CREATED
-          ? res.status(HttpStatus.CREATED).json(data.result)
-          : next(errorFactory.conflict(req.traceId));
+        data.status === HttpStatus.CREATED ?
+          res.status(HttpStatus.CREATED).json(data.result) :
+          next(errorFactory.conflict(req.traceId));
       } else {
         next(validation);
       }
@@ -35,9 +35,9 @@ const userController = {
     try {
       const { id } = req.params;
       const data = await userService.getUserById(id);
-      data
-        ? res.status(HttpStatus.OK).json(data)
-        : next(errorFactory.notFound(req.traceId));
+      data ?
+        res.status(HttpStatus.OK).json(data) :
+        next(errorFactory.notFound(req.traceId));
     } catch (error) {
       next(error);
     }

@@ -124,7 +124,7 @@ export default {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/User",
+              $ref: "#/definitions/UserGetObject",
             },
           },
         },
@@ -168,10 +168,61 @@ export default {
         },
       },
     },
+    UserGetObject: {
+      required: ["id", "userName", "email", "password"],
+      properties: {
+        id: {
+          type: "uuid",
+          uniqueItems: true,
+        },
+        userName: {
+          type: "string",
+          uniqueItems: true,
+        },
+        fullName: {
+          type: "string",
+        },
+        email: {
+          type: "string",
+          uniqueItems: true,
+        },
+        isMerchant: {
+          type: "boolean",
+        },
+        merchants: {
+          type: "array",
+          items: {
+            $ref: "#/definitions/Merchant",
+          },
+        },
+      },
+    },
     Users: {
       type: "array",
       items: {
         $ref: "#/definitions/User",
+      },
+    },
+    Merchant: {
+      required: ["id", "merchantName", "userId"],
+      properties: {
+        id: {
+          type: "uuid",
+          uniqueItems: true,
+        },
+        countryCode: {
+          type: "string",
+        },
+        merchantName: {
+          type: "string",
+          uniqueItems: true,
+        },
+        userId: {
+          type: "uuid",
+        },
+        status: {
+          type: "boolean",
+        },
       },
     },
 

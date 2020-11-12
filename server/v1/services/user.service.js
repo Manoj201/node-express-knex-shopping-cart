@@ -7,7 +7,7 @@ import UserQuery from "server/v1/db/user.query";
 import config from "server/config/app.config";
 
 const createUser = async (userName, fullName, email, password, isMerchant) => {
-  let payload = {};
+  const payload = {};
   const id = uuidv4();
 
   const exist = await UserQuery.isExistUserQuery(userName, email);
@@ -46,7 +46,7 @@ const getUserById = async (userId) => {
   return response;
 };
 const getUsers = async (pageNumber, pageSize) => {
-  const page = pageNumber || 1;
+  let page = pageNumber || 1;
   const size = pageSize || config.listingPageSize;
 
   if (page < 1) {

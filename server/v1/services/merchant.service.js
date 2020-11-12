@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import MerchantQuery from "server/v1/db/merchant.query";
 
 const createMerchant = async (countryCode, merchantName, userId) => {
-  let payload = {};
+  const payload = {};
   const id = uuidv4();
 
   const addedMerchant = await MerchantQuery.createMerchant({

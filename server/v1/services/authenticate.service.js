@@ -6,7 +6,7 @@ import UserQuery from "server/v1/db/user.query";
 import config from "server/config/app.config";
 
 const authenticate = async (username, password) => {
-  let result = {};
+  const result = {};
 
   const user = await UserQuery.getByUsername(username);
   if (user) {

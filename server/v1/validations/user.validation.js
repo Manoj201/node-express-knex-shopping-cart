@@ -1,7 +1,7 @@
 import HttpStatus from "http-status-codes";
 
 const createUserValidation = (payload) => {
-  let validation = {
+  const validation = {
     details: {},
     valid: true,
   };

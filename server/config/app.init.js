@@ -6,7 +6,9 @@ import chalk from "chalk";
 export default () => {
   const environmentFiles = glob(
     "server/config/env/" + process.env.NODE_ENV + ".js",
-    { sync: true }
+    {
+      sync: true,
+    }
   );
   if (!environmentFiles.length) {
     if (process.env.NODE_ENV) {
