@@ -1,5 +1,6 @@
 "use strict";
 import HttpStatus from "http-status-codes";
+import fs from "fs";
 
 import userValidation from "server/v1/validations/user.validation";
 import userService from "server/v1/services/user.service";
@@ -50,6 +51,23 @@ const userController = {
         parseInt(pageSize)
       );
       res.status(HttpStatus.OK).json(data);
+    } catch (error) {
+      next(error);
+    }
+  },
+  uploadAvatar: async (req, res, next) => {
+    try {
+      // fetching AWS keys, this should be move to env file security reason of git hub im sending as headers
+      const { accesskeyid: accessKeyId, secretaccesskey: secretAccessKey } = req.headers;
+      const { id } = req.params;
+      const s3Params = {
+        accessKeyId, secretAccessKey,
+      };
+      const tempPath = req.files.avatar.path;
+
+      const response = await userService.uploadAvatar(id, s3Params, tempPath);
+
+      res.status(HttpStatus.OK).json(response);
     } catch (error) {
       next(error);
     }

@@ -39,9 +39,9 @@ export default {
         produces: ["application/json"],
         responses: {
           200: {
-            description: "New user is created",
+            description: "login response",
             schema: {
-              $ref: "#/definitions/User",
+              $ref: "#/definitions/LoginResponse",
             },
           },
         },
@@ -57,7 +57,7 @@ export default {
             in: "body",
             description: "User that we want to create",
             schema: {
-              $ref: "#/definitions/User",
+              $ref: "#/definitions/UserPost",
             },
           },
         ],
@@ -97,7 +97,7 @@ export default {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/User",
+              $ref: "#/definitions/Users",
             },
           },
         },
@@ -130,6 +130,31 @@ export default {
         },
       },
     },
+    "/merchant": {
+      post: {
+        tags: ["Merchant"],
+        summary: "Create Merchant",
+        parameters: [
+          {
+            name: "merchant",
+            in: "body",
+            description: "Merchant that we want to create",
+            schema: {
+              $ref: "#/definitions/CreateMerchant",
+            },
+          },
+        ],
+        produces: ["application/json"],
+        responses: {
+          200: {
+            description: "New merchant is created",
+            schema: {
+              $ref: "#/definitions/Merchant",
+            },
+          },
+        },
+      },
+    },
   },
   definitions: {
     Credential: {
@@ -142,6 +167,17 @@ export default {
         password: {
           type: "string",
           uniqueItems: true,
+        },
+      },
+    },
+    LoginResponse: {
+      properties: {
+        userName: {
+          type: "object",
+          $ref: "#/definitions/User",
+        },
+        token: {
+          type: "string",
         },
       },
     },
@@ -162,6 +198,28 @@ export default {
         email: {
           type: "string",
           uniqueItems: true,
+        },
+        isMerchant: {
+          type: "boolean",
+        },
+      },
+    },
+    UserPost: {
+      required: ["userName", "email", "password"],
+      properties: {
+        userName: {
+          type: "string",
+          uniqueItems: true,
+        },
+        fullName: {
+          type: "string",
+        },
+        email: {
+          type: "string",
+          uniqueItems: true,
+        },
+        password: {
+          type: "string",
         },
         isMerchant: {
           type: "boolean",
@@ -200,7 +258,22 @@ export default {
     Users: {
       type: "array",
       items: {
-        $ref: "#/definitions/User",
+        $ref: "#/definitions/UserGetObject",
+      },
+    },
+    CreateMerchant: {
+      required: ["id", "merchantName", "userId"],
+      properties: {
+        countryCode: {
+          type: "string",
+        },
+        merchantName: {
+          type: "string",
+          uniqueItems: true,
+        },
+        userId: {
+          type: "uuid",
+        },
       },
     },
     Merchant: {

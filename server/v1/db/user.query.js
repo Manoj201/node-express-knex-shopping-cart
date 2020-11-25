@@ -1,6 +1,9 @@
 import knex from "server/util/knex";
 
+import Models from "server/v1/db/models";
+
 const tableName = "users";
+
 
 const createUser = (data) => {
   return knex(tableName).insert(data, [
@@ -22,20 +25,7 @@ const isExistUserQuery = (userName, email) => {
 };
 
 const getById = (id) => {
-  return knex(tableName)
-    .select([
-      "users.id",
-      "user_name as userName",
-      "full_name as fullName",
-      "email",
-      "users.is_merchant as isMerchant",
-      "merchants.id as merchantId",
-      "merchants.country_code as countryCode",
-      "merchants.merchant_name as merchantName",
-      "merchants.status as merchantStatus",
-    ])
-    .leftJoin("merchants", "users.id", "merchants.user_id")
-    .where("users.id", "=", id);
+  return new Models.User({ id }).fetch({ withRelated: ["merchants"] });
 };
 
 const getByUsername = (userName) => {
@@ -52,15 +42,18 @@ const getByUsername = (userName) => {
     .first();
 };
 
-const getUsers = (limit, offset) => {
-  return knex(tableName)
-    .select(["id", "user_name", "full_name", "email", "is_merchant"])
-    .limit(limit)
-    .offset(offset);
+const getUsers = (page, pageSize) => {
+  return new Models.User().fetchPage({
+    page, pageSize, withRelated: ["merchants"],
+  });
 };
 
 const getUsersCount = () => {
   return knex(tableName).count("* as count").first();
+};
+
+const updateAvatarURL = (id, avatarURL) => {
+  return knex(tableName).where({ id }).update({ "avatar_url": avatarURL });
 };
 
 export default {
@@ -70,4 +63,5 @@ export default {
   getByUsername,
   getUsers,
   getUsersCount,
+  updateAvatarURL,
 };

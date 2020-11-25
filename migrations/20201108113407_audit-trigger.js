@@ -5,7 +5,7 @@ exports.up = function (knex) {
       AS
       $$
       BEGIN
-          NEW.updated_at = "select extract(epoch from now())";
+          NEW.updated_at = CURRENT_TIMESTAMP;
           RETURN NEW;
       END;
       $$;
