@@ -57,7 +57,7 @@ Node JS API architecture with express js and Knex (postgress) Query builder.
 :heavy_check_mark: Use nodeman for auto reload while developing \
 :heavy_check_mark: Demostrate simple shopping cart API set \
 :heavy_check_mark: Docker support : TODO \
-:heavy_check_mark: Docker support : AWS communication TODO \
+:heavy_check_mark: AWS communication- Upload and read file to Amazon S3 \
 :heavy_check_mark: Swagger API documentation
 
 ## :rocket: Technologies
@@ -70,6 +70,7 @@ The following tools were used in this project:
 - [ES6](http://es6-features.org/)
 - [Babel](https://babeljs.io/)
 - [Nodeman](https://nodemon.io/)
+- [AWS-SDK](https://aws.amazon.com/sdk-for-node-js/)
 
 ## :white_check_mark: Requirements
 
@@ -89,6 +90,8 @@ $ yarn
 
 # Install knex query builder globally
 $ yarn add knex -g
+
+$ update knexfile.js and create respective DB on your local machine
 
 # Run Migrations
 $ knex migrate:latest
