@@ -8,6 +8,7 @@ import {
   authenticateRoutes,
   userRoutes,
   merchantRoutes,
+  assetRoutes,
 } from "server/v1/routes";
 
 const app = express();
@@ -17,6 +18,7 @@ const serverRegisterApi = (app) => {
   authenticateRoutes(app);
   userRoutes(app);
   merchantRoutes(app);
+  assetRoutes(app);
 };
 
 ServerInit();

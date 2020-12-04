@@ -1,6 +1,5 @@
 "use strict";
 import HttpStatus from "http-status-codes";
-import fs from "fs";
 
 import userValidation from "server/v1/validations/user.validation";
 import userService from "server/v1/services/user.service";

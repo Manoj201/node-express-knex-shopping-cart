@@ -26,7 +26,7 @@ const configure = (app) => {
 const globalErrorHandler = (app) => {
   app.use((err, req, res, next) => {
     logger.error(err.message || err, { token: req.traceId });
-    res.status(err.status || HttpStatus.INTERNAL_SERVER_ERROR);
+    res.status(err.status || err.statusCode || HttpStatus.INTERNAL_SERVER_ERROR);
     res.json({
       message: err.message,
       error: err || errorFactory.internalServerError(req.traceId, err),

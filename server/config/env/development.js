@@ -1,5 +1,6 @@
 "use strict";
 
-const config = {};
+const config = {
+};
 
 export default config;
